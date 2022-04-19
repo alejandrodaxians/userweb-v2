@@ -13,20 +13,33 @@
       <h3>Menu</h3>
       <div class="menu">
           <router-link class="button" to="/">
-            <span class="material-icons">home</span>
-            <span class="text">Enlace1</span>
+            <span class="material-icons">search</span>
+            <span class="text">SEARCH</span>
+          <div class="dropdown-toggle-wrap">
+              <button class="dropdown-toggle" @click="ToggleDrop">
+              <span class="material-icons">expand_more</span>
+              </button> 
+          </div>          
           </router-link>
-          <router-link class="button" to="/about">
-            <span class="material-icons">visibility</span>
-            <span class="text">Enlace2</span>
+
+            <div class="dropdown" :class="`${is_down && 'is-down'}`">
+                <router-link class="button" to="/filter">
+                    <span class="material-icons">filter_alt</span>
+                    <span class="text">FILTER</span>
+                </router-link>  
+                <router-link class="button" to="/id">
+                    <span class="material-icons">fingerprint</span>
+                    <span class="text">ID</span>
+                </router-link>
+            </div>
+
+          <router-link class="button" to="/sede">
+            <span class="material-icons">perm_data_setting</span>
+            <span class="text">SEDE</span>
           </router-link>
-          <router-link class="button" to="/link">
-            <span class="material-icons">group</span>
-            <span class="text">Enlace3</span>
-          </router-link>
-          <router-link class="button" to="/linkle">
-            <span class="material-icons">email</span>
-            <span class="text">Enlace4</span>
+          <router-link class="button" to="/configure">
+            <span class="material-icons">tune</span>
+            <span class="text">CONFIGURE</span>
           </router-link>
       </div>
   </aside>
@@ -36,9 +49,17 @@
 import { ref } from 'vue'
 
 const is_expanded = ref(localStorage.getItem("is_expanded") === "true")
+const is_down = ref(localStorage.getItem("is_down") === "true")
+
+
 const ToggleMenu = () => {
 	is_expanded.value = !is_expanded.value
 	localStorage.setItem("is_expanded", is_expanded.value)
+}
+
+const ToggleDrop = () => {
+    is_down.value = !is_down.value
+	localStorage.setItem("is_down", is_down.value)
 }
 </script>
 
@@ -87,6 +108,30 @@ aside {
                 .material-icons {
                     color: var(--primary);
                     transform: translatex(0.5rem);
+                }
+            }
+        }
+    }
+
+    .dropdown-toggle-wrap {
+        display: flex;
+        position: relative;
+        top: 0;
+        transition: 0.2s ease-out;
+
+        .dropdown-toggle {
+            transition: 0.2s ease-out;            
+
+            .material-icons {
+                font-size: 2rem;
+                color: var(--light);
+                transition: 0.2s ease-out;
+            }
+
+            &:hover {
+                .material-icons {
+                    color: var(--primary);
+                    transform: translatey(0.5rem);
                 }
             }
         }
@@ -164,6 +209,39 @@ aside {
     @media (max-width: 768px) {
         position: fixed;
         z-index: 99;
+    }
+}
+
+.dropdown {
+    display: flex;
+    flex-direction: column;
+    height: 0px;
+    overflow: hidden;
+    background-color: var(--dark);
+    color: var(--light);
+    transition: 0.2s ease-out;
+
+    &.is-down {
+        height: 100px;
+        transition: 0.3s ease-out;
+        background-color: var(--drop-item);
+
+        .menu-toggle-wrap {
+            top: -3rem;
+            .menu-toggle {
+                transform: rotate(-180deg);
+            }
+        }
+
+        h3, .button .text {
+        opacity: 1;
+    }
+    
+        .button {
+           .material-icons {
+               margin-right: 1rem;
+           } 
+        }
     }
 }
 </style>
