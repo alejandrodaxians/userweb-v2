@@ -14,7 +14,7 @@
       <div class="menu">
           <router-link class="button" to="/">
             <span class="material-icons">search</span>
-            <span class="text">SEARCH</span>
+            <span id="father" class="text">SEARCH</span>
           <div class="dropdown-toggle-wrap">
               <button class="dropdown-toggle" @click="ToggleDrop">
               <span class="material-icons">expand_more</span>
@@ -222,26 +222,10 @@ aside {
     transition: 0.2s ease-out;
 
     &.is-down {
-        height: 100px;
+        height: 6rem;
         transition: 0.3s ease-out;
         background-color: var(--drop-item);
-
-        .menu-toggle-wrap {
-            top: -3rem;
-            .menu-toggle {
-                transform: rotate(-180deg);
-            }
-        }
-
-        h3, .button .text {
-        opacity: 1;
     }
-    
-        .button {
-           .material-icons {
-               margin-right: 1rem;
-           } 
-        }
-    }
+
 }
 </style>
