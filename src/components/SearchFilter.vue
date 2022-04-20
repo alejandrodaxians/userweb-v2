@@ -1,29 +1,57 @@
 <template>
   <form @submit.prevent="handleSubmit">
-    <label for="">Email:</label>
-    <input type="email" required v-model="email">
-    <div class="info">Info test</div>
-
-    <label for="">Password:</label>
-    <input type="password" required v-model="password">
-
-    <label for="">Role:</label>
-    <select name="" id="" required v-model="role">
-        <option value="developer">Web Developer</option>
-        <option value="designer">Web Designer</option>
-    </select>
-
-    <div class="terms">
-        <input type="checkbox" required v-model="terms">
-        <label for="">Accept terms and conditions</label>    
+    <h4>RETURNS A LIST OF REQUESTS FILTERED BY THE GIVEN PARAMETERS</h4>
+    <div class="complete">
+        <input type="checkbox" v-model="complete">
+        <label for="">complete</label>  
+        <p class="info">boolean, default:false</p>  
     </div>
 
-    <div class="reset">
-        <button type="reset">Reset</button>
+    <div class="wrapper">
+        <div class="left">
+            <label for="">status:</label>
+            <select name="" id="" required v-model="status">
+                <option value="" hidden></option>
+                <option value="acknowledged">ACKNOWLEDGED</option>
+                <option value="progress">IN-PROGRESS</option>
+                <option value="pending">PENDING</option>
+                <option value="held">HELD</option>
+                <option value="cancelled">CANCELLED</option>
+                <option value="completed">COMPLETED</option>
+                <option value="failed">FAILED</option>
+                <option value="partial">PARTIAL</option>
+                <option value="rejected">REJECTED</option>
+            </select>
+            <p class="info">string</p>
+            
+            <label for="">saga_name:</label>
+            <select name="" id="" required v-model="saga">
+                <option value="" hidden></option>
+                <option value="crear">CREAR_SEDE</option>
+                <option value="borrar">BORRAR_SEDE</option>
+            </select>
+            <p class="info">string</p> 
+        </div>
+
+        <div class="right">
+            <label for="">from_date:</label>
+            <input type="date" name="" id="" required v-model="from">
+            <p class="info">string($date), YYYY-MM-DD</p>>
+
+            <label for="">to_date:</label>
+            <input type="date" name="" id="" required v-model="to">
+            <p class="info">string($date), YYYY-MM-DD</p>
+        </div>
     </div>
 
-    <div class="submit">
-        <button>Submit</button>
+    <div class="buttons">
+        <div class="reset">
+            <button type="reset">Reset</button>
+        </div>
+
+        <div class="submit">
+            <button>Submit</button>
+        </div>
     </div>
 
   </form>
@@ -33,19 +61,21 @@
 export default {
     data() {
         return {
-            email: '',
-            password: '',
-            role: '',
-            terms: false,
+            complete: false,
+            saga: '',
+            status: '',
+            from: '',
+            to: ''
         }
     },
     methods: {
         handleSubmit() {
             console.log('form submitted')
-            console.log('email: ', this.email)
-            console.log('password: ', this.password)
-            console.log('role: ', this.role)
-            console.log('terms: ', this.terms)
+            console.log('complete: ', this.complete)
+            console.log('saga: ', this.saga)
+            console.log('status: ', this.status)
+            console.log('from: ', this.from)
+            console.log('to: ', this.to)
         }
     }
 }
@@ -60,6 +90,32 @@ export default {
         text-align: left;
         padding: 40px;
         flex-direction: column;
+    }
+
+    .left {
+        display: inline-block;
+        width:120px;
+        height:120px;
+        margin-right: 190px;   
+    }
+
+    .right {
+        display: inline-block;
+        width:120px;
+        height:120px;
+    }
+    
+    p {
+        width: 200px;
+    }
+
+    h4 {
+        color: var(--light);
+        display: inline-block;
+        margin: 25px 0 15px;
+        font-size: 0.8em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
     }
 
     label {
@@ -88,8 +144,8 @@ export default {
         box-sizing: border-box;
         border: none;
         color: #555;
-        margin-bottom: 15px;
-        padding-bottom: 10px;
+        margin-bottom: 10px;
+        padding-bottom: 5px;
     }
 
     input[type="checkbox"] {
@@ -98,18 +154,26 @@ export default {
         margin: 0 16px 0 0;
         position: relative;
         top: 2px;
+        transform: scale(1.5);
+    }
+
+    .buttons {
+        padding-top: 30px;
     }
 
     button {
-        background: #0b6dff;
-        border: 0;
+        background: #053174;
         padding: 10px 20px;
         margin-top: 20px;
         color: #fff;
         border-radius: 20px; 
         text-transform: uppercase;  
-        font-size: 1rem; 
+        font-size: 1rem;
+        font-weight: bold;  
         
+        &:hover {
+            border: solid 1px #fff;
+        }
     }
 
     .submit, .reset {
@@ -123,9 +187,9 @@ export default {
 
     .info {
         color: #ff87b5;
-        margin-top: 10px;
+        margin-top: -1px;
         margin-bottom: 10px;
-        font-size: 0.8em;
+        font-size: 0.7em;
         font-weight: bold;
     }
 </style>
