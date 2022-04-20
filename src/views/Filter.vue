@@ -1,6 +1,18 @@
 <template>
-  <main class="search">
-      <h1>FILTER</h1>
-      <p>Filter page</p>
-  </main>
+  <SearchFilter />
 </template>
+
+<script>
+  import SearchFilter from '../components/SearchFilter.vue'
+
+  export default {
+    name: 'App',
+    components: {
+      SearchFilter
+    }
+  }
+</script>
+
+<style lang="scss" scoped>
+
+</style>
