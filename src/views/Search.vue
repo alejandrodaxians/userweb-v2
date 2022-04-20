@@ -1,6 +1,18 @@
 <template>
-  <main class="search">
-      <h1>SEARCH</h1>
-      <p>Search page</p>
-  </main>
+  <SearchHome />
 </template>
+
+<script>
+  import SearchHome from '../components/SearchHome.vue'
+
+export default {
+  name: 'App',
+  components: {
+    SearchHome
+  }
+}
+</script>
+
+<style>
+
+</style>
