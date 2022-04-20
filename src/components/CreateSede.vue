@@ -42,7 +42,7 @@
                 <p class="info">string, required*</p>
             </div>
         </div>
-        br
+        
         <div class="right">
             <div class="files">
                 <label for="">raw_json</label>
