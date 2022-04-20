@@ -13,11 +13,11 @@
 <style lang="scss">
 
 :root {
-	--primary: #27c2e5;
+	--primary: #29caef;
 	--grey: #64748b;
-	--dark: #1e293b;
+	--dark: #0d131b;
 	--dark-alt: #334155;
-	--drop-item: #435a92;
+	--drop-item: #345877;
 	--light: #f1f5f9;
 	--sidebar-width: 300px;
 }

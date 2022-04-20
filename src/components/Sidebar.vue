@@ -83,6 +83,7 @@ aside {
 
         img {
             width: 2rem;
+            filter: invert(100%);
         }
     }
 
