@@ -10,7 +10,7 @@
     <div class="wrapper">
         <div class="left">
             <label for="">status:</label>
-            <select name="" id="" required v-model="status">
+            <select name="" id="" v-model="status">
                 <option value="" hidden></option>
                 <option value="acknowledged">ACKNOWLEDGED</option>
                 <option value="progress">IN-PROGRESS</option>
@@ -25,7 +25,7 @@
             <p class="info">string</p>
             
             <label for="">saga_name:</label>
-            <select name="" id="" required v-model="saga">
+            <select name="" id="" v-model="saga">
                 <option value="" hidden></option>
                 <option value="crear">CREAR_SEDE</option>
                 <option value="borrar">BORRAR_SEDE</option>
@@ -35,11 +35,11 @@
 
         <div class="right">
             <label for="">from_date:</label>
-            <input type="date" name="" id="" required v-model="from">
+            <input type="date" name="" id="" v-model="from">
             <p class="info">string($date), YYYY-MM-DD</p>>
 
             <label for="">to_date:</label>
-            <input type="date" name="" id="" required v-model="to">
+            <input type="date" name="" id="" v-model="to">
             <p class="info">string($date), YYYY-MM-DD</p>
         </div>
     </div>
