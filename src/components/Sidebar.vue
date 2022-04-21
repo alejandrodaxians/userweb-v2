@@ -1,5 +1,5 @@
 <template>
-  <aside :class="`${is_expanded && 'is-expanded'}`">
+  <aside id="sidebar" :class="`${is_expanded && 'is-expanded'}`">
       <div class="logo">
           <img src="../assets/logo.png" alt="Vue">
       </div>
@@ -47,7 +47,7 @@
 
 <script setup>
 import { ref } from 'vue'
-
+ 
 const is_expanded = ref(localStorage.getItem("is_expanded") === "true")
 const is_down = ref(localStorage.getItem("is_down") === "true")
 
