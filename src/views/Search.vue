@@ -1,6 +1,5 @@
 <template>
   <SearchHome />
-  <h1>SEARCH</h1>
 </template>
 
 <script>

@@ -18,6 +18,7 @@
 	--dark-alt: #334155;
 	--drop-item: #345877;
 	--light: #f1f5f9;
+	--light-alt: #adafb0;
 	--sidebar-width: 300px;
 }
 
