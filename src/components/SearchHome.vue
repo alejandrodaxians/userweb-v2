@@ -13,71 +13,16 @@
                 <th>data</th>
             </thead>
             <tbody>
-                <tr>
-                    <th>1235</th>
-                    <td>"IN_PROGRESS"</td>
-                    <td>"Request name"</td>
-                    <td>"Request step"</td>
-                    <td>"string"</td>
-                    <td>"2022-04-21T14:28:40.050Z"</td>
-                    <td>"2022-04-21T14:28:40.050Z"</td>
-                    <td>"2022-04-21T14:28:40.050Z</td>
-                    <td>{}</td>
-                </tr>
-                <tr>
-                    <th>1234</th>
-                    <td>"IN_PROGRESS"</td>
-                    <td>"Request name"</td>
-                    <td>"Request step"</td>
-                    <td>"string"</td>
-                    <td>"2022-04-21T14:28:40.050Z"</td>
-                    <td>"2022-04-21T14:28:40.050Z"</td>
-                    <td>"2022-04-21T14:28:40.050Z</td>
-                    <td>{}</td>
-                </tr>
-                <tr>
-                    <th>1234</th>
-                    <td>"IN_PROGRESS"</td>
-                    <td>"Request name"</td>
-                    <td>"Request step"</td>
-                    <td>"string"</td>
-                    <td>"2022-04-21T14:28:40.050Z"</td>
-                    <td>"2022-04-21T14:28:40.050Z"</td>
-                    <td>"2022-04-21T14:28:40.050Z</td>
-                    <td>{}</td>
-                </tr>
-                <tr>
-                    <th>1234</th>
-                    <td>"IN_PROGRESS"</td>
-                    <td>"Request name"</td>
-                    <td>"Request step"</td>
-                    <td>"string"</td>
-                    <td>"2022-04-21T14:28:40.050Z"</td>
-                    <td>"2022-04-21T14:28:40.050Z"</td>
-                    <td>"2022-04-21T14:28:40.050Z</td>
-                    <td>{}</td>
-                </tr>
-                <tr>
-                    <th>1234</th>
-                    <td>"IN_PROGRESS"</td>
-                    <td>"Request name"</td>
-                    <td>"Request step"</td>
-                    <td>"string"</td>
-                    <td>"2022-04-21T14:28:40.050Z"</td>
-                    <td>"2022-04-21T14:28:40.050Z"</td>
-                    <td>"2022-04-21T14:28:40.050Z</td>
-                    <td>{}</td>
-                </tr>
-                <tr>
-                    <th>1234</th>
-                    <td>"IN_PROGRESS"</td>
-                    <td>"Request name"</td>
-                    <td>"Request step"</td>
-                    <td>"string"</td>
-                    <td>"2022-04-21T14:28:40.050Z"</td>
-                    <td>"2022-04-21T14:28:40.050Z"</td>
-                    <td>"2022-04-21T14:28:40.050Z</td>
-                    <td>{}</td>
+                <tr >
+                    <th></th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
             </tbody>
         </table>
@@ -86,9 +31,6 @@
 
 <script>
 export default {
-    methods: {
-    
-    }
 }
 </script>
 

@@ -4,7 +4,7 @@
       <button :class="[isActive ? 'active' : '']" @click="component = 'CreateSede'; toggle()">Crear Sede</button>
       <button :class="[!isActive ? 'active' : '']" @click="component = 'DeleteSede'; toggle()">Borrar Sede</button>
     </div>
-    <component :is="component" />
+      <component :is="component" />
   </div>
 </template>
 
@@ -26,14 +26,12 @@
     methods: {
       toggle() {
         this.isActive = !this.isActive;
-      }
+      },
     }
   }
 </script>
 
 <style lang="scss" scoped>
-
-
 .buttons {
   margin-left: 35px;
 }
