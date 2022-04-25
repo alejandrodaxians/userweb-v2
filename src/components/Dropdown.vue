@@ -1,67 +1,84 @@
 <template>
-  <div class="menu-item" @click="isOpen = !isOpen">
-      <p>Pick action</p>
+  <div class="menu-item-wrap" @click="isOpen = !isOpen" >
+      <p>Pick</p>
       <span class="material-icons">expand_more</span>
-      <transition name="fade" appear>
-    <div class="sub-menu" v-if="isOpen">
-        <div class="menu-item">
-            <button @click="component = 'CreateSede'">Crear Sede</button>
-            <button @click="component = 'DeleteSede'">Borrar Sede</button>
+        <div class="sub-menu" v-if="isOpen">
+            <div class="menu-item">
+                <button @click="component = 'CreateSede'">Crear_Sede</button>
+                <br>
+                <button @click="component = 'DeleteSede'">Borrar_Sede</button>
+            </div>
         </div>
-    </div>
-      </transition>
   </div>
+  <component :is="component" />
 </template>
 
 <script>
+import CreateSede from '../components/CreateSede.vue'
+import DeleteSede from '../components/DeleteSede.vue'
+
 export default {
     name: 'dropdown',
-    props: ['title', 'items'],
     data () {
         return {
             isOpen: false
         }
+    },
+    components: {
+        DeleteSede,
+        CreateSede
     }
 }
 </script>
 
 <style lang="scss" scoped>
+
     p {
         margin-top: 4px;
         text-transform: uppercase;
         cursor: pointer;
+        font-weight: bold;
     }
     
-    span {
-        width: 10px;
-        margin-left: 5px;
+    .material-icons {
+        font-size: 2rem;
         cursor: pointer;
+
+        &:hover {
+            color: var(--primary);
+            transform: translateY(3px);
+            transition: 0.2s ease-out;
+        }
     }
    
-    .menu-item {
+    .menu-item-wrap {
+        width: 235px;
+        margin-left: 35px;
         color: #fff;
         padding: 10px 20px;
-        position: relative;
-        border-bottom: 3px solid transparent;
-        display: flex;
-        transition: 0.4s;
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
+        // position: relative;
+        // display: flex;
+        background-color: var(--dark);
+        height: min-content;
    }
 
-   .menu-item .sub-menu {
-    margin-top: 40px;
-    position: block;
-    background-color: var(--dark);
-    left: 50%;
-    transform: translateX(-50%);
-    transition: height 0.2s;
-    
-    &:hover, &:active {
-            background-color: var(--dark-alt);
-        }
+   .sub-menu {
+       display: flex;
+       background-color: var(--dark-alt);
+       margin-bottom: 15px;
    }
+
+   button {
+        background: #031838;
+        padding: 20px;
+        margin: 15px;
+        color: var(--light);
+        text-transform: uppercase;  
+        font-size: 1rem;
+        font-weight: bold; 
+        
+        &:hover {
+            color: var(--primary);
+        }
+    }
 </style>
