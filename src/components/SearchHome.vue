@@ -143,7 +143,6 @@ export default {
 }
 
 table {
-    width: 1200px;
     font-weight: bold;
     margin-left: 15px;
     margin-right: 15px;
@@ -225,5 +224,31 @@ span {
   text-align: right;
   width: 750px;
   padding: 8px;
+}
+
+@media screen and (max-width: 900px) {
+    table th:nth-child(1), table td:nth-child(1), table th:nth-child(2), table td:nth-child(2) {
+        width: 20px;
+    }
+
+    table th:nth-child(4), table td:nth-child(4) {
+        display: none;
+    }
+
+    table th:nth-child(6), table td:nth-child(6) {
+        display: none;
+    }
+
+    table th:nth-child(7), table td:nth-child(7) {
+        display: none;
+    }
+
+    table th:nth-child(8), table td:nth-child(8) {
+        display: none;
+    }
+
+    table th:nth-child(9), table td:nth-child(9) {
+        display: none;
+    }
 }
 </style>
