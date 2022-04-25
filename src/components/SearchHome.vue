@@ -3,7 +3,10 @@
         <table id="tabla">
             <thead>
                 <tr>
-                    <th v-for="col in columns" :key="col" @click="sortTable(col)">{{ col }}</th>
+                    <th v-for="col in columns" :key="col" @click="sortTable(col)">{{ col }}
+                        <span class="material-icons" v-show="col == sortColumn" v-if="!this.ascending">arrow_drop_down</span>
+                        <span class="material-icons" v-show="col == sortColumn" v-else>arrow_drop_up</span>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -122,7 +125,8 @@ table {
 thead th {
     border:solid 3px var(--light);
     text-transform: uppercase;
-    padding: 6px;
+    padding: 6px 15px;
+    // padding-right: 25px;
 
     &:hover {
         color: var(--primary);
@@ -161,4 +165,13 @@ input {
         margin-left: 2px;
         font-size: 1rem;
     }
+
+span {
+    // float: center;
+    width: 12px;
+    height: 15px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position-y: bottom;
+}
 </style>
