@@ -1,60 +1,60 @@
 <template>
-  <div>
+<Dropdown />
+  <!-- <div>
     <div class="buttons">
       <button :class="[isActive ? 'active' : '']" @click="component = 'CreateSede'; toggle()">Crear Sede</button>
       <button :class="[!isActive ? 'active' : '']" @click="component = 'DeleteSede'; toggle()">Borrar Sede</button>
     </div>
       <component :is="component" />
-  </div>
+  </div> -->
 </template>
 
 <script>
-  import CreateSede from '../components/CreateSede.vue'
-  import DeleteSede from '../components/DeleteSede.vue'
+  import Dropdown from '../components/Dropdown.vue'
 
   export default {
     name: 'App',
     components: {
-      CreateSede, DeleteSede
+      Dropdown
     },
     data() {
       return{
-        component: '',
-        isActive: false,
+        // component: '',
+        // isActive: false,
       }
     },
     methods: {
-      toggle() {
-        this.isActive = !this.isActive;
-      },
+      // toggle() {
+      //   this.isActive = !this.isActive;
+      // },
     }
   }
 </script>
 
 <style lang="scss" scoped>
-.buttons {
-  margin-left: 35px;
-}
+// .buttons {
+//   margin-left: 35px;
+// }
 
-button {
-  height: 50px;
-  padding: 10px 20px;
-  color: var(--light);
-  text-transform: uppercase;  
-  font-size: 1rem;
-  font-weight: bold;
-  text-align: center;
-  background: var(--dark); 
-  border: solid 3px var(--light);
+// button {
+//   height: 50px;
+//   padding: 10px 20px;
+//   color: var(--light);
+//   text-transform: uppercase;  
+//   font-size: 1rem;
+//   font-weight: bold;
+//   text-align: center;
+//   background: var(--dark); 
+//   border: solid 3px var(--light);
     
-    &:hover {
-        background: var(--dark-alt);
-        color: var(--primary);
-    }
-}
+//     &:hover {
+//         background: var(--dark-alt);
+//         color: var(--primary);
+//     }
+// }
 
-.active {
-  border: solid 3px var(--dark);
-}
+// .active {
+//   border: solid 3px var(--dark);
+// }
 
 </style>
