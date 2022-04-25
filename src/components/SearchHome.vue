@@ -3,7 +3,7 @@
         <table id="tabla">
             <thead>
                 <tr>
-                    <th v-for="col in columns" :key="col">{{ col }}</th>
+                    <th v-for="col in columns" :key="col" @click="sortTable(col)">{{ col }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -76,8 +76,20 @@ export default {
                 "data": {}
             },
             ]
+        }  
+    },
+    methods: {
+    "sortTable": function sortTable(col) {
+      this.rows.sort(function(a, b) {
+        if (a[col] > b[col]) {
+          return 1;
+        } else if (a[col] < b[col]) {
+          return  -1;
         }
+        return 0;
+      })
     }
+  },
 }
 </script>
 
@@ -102,6 +114,11 @@ thead th {
     border:solid 3px var(--light);
     text-transform: uppercase;
     padding: 6px;
+
+    &:hover {
+        color: var(--primary);
+        cursor: pointer;
+    }
 }
 
 tr {
