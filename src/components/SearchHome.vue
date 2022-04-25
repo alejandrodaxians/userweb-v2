@@ -1,5 +1,5 @@
 <template>
-    <div class="body">
+    <div class="body" style="overflow-x:auto;">
         <table id="tabla">
             <thead>
                 <tr>
@@ -10,7 +10,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="row in filteredRows" :key="row">
+                <tr v-for="row in filteredRows.slice(0, 10)" :key="row">
                    <td v-for="col in columns" :key="col">{{ row[col] }}</td>
                 </tr>
             </tbody>
