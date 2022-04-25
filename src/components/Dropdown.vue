@@ -38,11 +38,13 @@ export default {
         text-transform: uppercase;
         cursor: pointer;
         font-weight: bold;
+        margin-left: 20px;
     }
     
     .material-icons {
         font-size: 2rem;
         cursor: pointer;
+        margin-left: 20px;
 
         &:hover {
             color: var(--primary);
