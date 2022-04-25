@@ -3,18 +3,19 @@
         <table id="tabla">
             <thead>
                 <tr>
-                    <th v-for="col in columns" :key="col" @click="sortTable(col)">{{ col }}
+                    <th v-for="(col) in columns" :key="col" @click="sortTable(col)">{{ col }}
                         <span class="material-icons" v-show="col == sortColumn" v-if="!this.ascending">arrow_drop_down</span>
                         <span class="material-icons" v-show="col == sortColumn" v-else>arrow_drop_up</span>
                     </th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="row in rows" :key="row">
+                <tr v-for="row in filteredRows" :key="row">
                    <td v-for="col in columns" :key="col">{{ row[col] }}</td>
                 </tr>
             </tbody>
         </table>
+    <input type="text" placeholder="Filter by ID" v-model="filter" />
     </div>
 </template>
 
@@ -22,6 +23,9 @@
 export default {
     data() {
         return {
+            filter: '',
+            currentPage: 1,
+            elementsPerPage: 1,
             columns: [
                 "request_id",
                 "status_msg",
@@ -102,7 +106,28 @@ export default {
             })
         }
     },
+    computed: {
+    filteredRows() {
+        return this.rows.filter(row => {
+        const request_id = row.request_id.toString().toLowerCase();
+        const status_msg = row.status_msg.toLowerCase();
+        const name = row.name.toLowerCase();
+        const step = row.step.toLowerCase();
+        const description = row.description.toLowerCase();
+        const creation_date = row.creation_date.toLowerCase();
+        const start_date = row.start_date.toLowerCase();
+        const completion_date = row.completion_date.toLowerCase();
+        const searchTerm = this.filter.toLowerCase();
+        
+
+        return status_msg.includes(searchTerm) || request_id.includes(searchTerm) || 
+            name.includes(searchTerm) || step.includes(searchTerm) || description.includes(searchTerm) || 
+            creation_date.includes(searchTerm) || start_date.includes(searchTerm) || completion_date.includes(searchTerm)
+        });
+  }
+},
 }
+
 </script>
 
 <style lang="scss" scoped>
@@ -120,13 +145,15 @@ export default {
 table {
     width: 1200px;
     font-weight: bold;
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
 thead th {
     border:solid 3px var(--light);
     text-transform: uppercase;
-    padding: 6px 15px;
-    // padding-right: 25px;
+    padding: 15px;
+    text-align: center;
 
     &:hover {
         color: var(--primary);
@@ -148,6 +175,7 @@ td {
     border: solid 1px var(--light-alt);
     height: 40px;
     padding: 6px;
+    overflow: hidden;
 } 
 
 tr:nth-child(even) {
@@ -162,16 +190,40 @@ input {
         border: none;
         color: #555;
         margin-bottom: 20px;
-        margin-left: 2px;
+        margin-left: 17px;
         font-size: 1rem;
+        margin-top: 30px;
     }
 
 span {
-    // float: center;
+    float: left;
     width: 12px;
     height: 15px;
     background-repeat: no-repeat;
     background-size: contain;
     background-position-y: bottom;
+}
+
+.number {
+    margin-top: 20px;
+    float: left;
+    padding: 4px 10px;
+    color: #FFF;
+    border-radius: 4px;
+    background: #44475C;
+    margin: 0px 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.number:hover, .number.active {
+  background: var(--primary);
+  color: var(--dark)
+}
+
+.pagination {
+  text-align: right;
+  width: 750px;
+  padding: 8px;
 }
 </style>
