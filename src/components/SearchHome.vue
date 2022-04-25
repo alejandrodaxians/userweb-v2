@@ -1,28 +1,14 @@
 <template>
     <div class="body">
-        <table>
+        <table id="tabla">
             <thead>
-                <th>request id</th>
-                <th>status msg</th>
-                <th>name</th>
-                <th>step</th>
-                <th>description</th>
-                <th>creation date</th>
-                <th>start date</th>
-                <th>completion date</th>
-                <th>data</th>
+                <tr>
+                    <th v-for="col in columns" :key="col">{{ col }}</th>
+                </tr>
             </thead>
             <tbody>
-                <tr >
-                    <th></th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                <tr v-for="row in rows" :key="row">
+                   <td v-for="col in columns" :key="col">{{ row[col] }}</td>
                 </tr>
             </tbody>
         </table>
@@ -31,6 +17,67 @@
 
 <script>
 export default {
+    data() {
+        return {
+            columns: [
+                "request_id",
+                "status_msg",
+                "name",
+                "step",
+                "description",
+                "creation_date",
+                "start_date",
+                "completion_date",
+                "data"
+            ],
+            rows: [
+            {
+                "request_id": 1234,
+                "status_msg": "IN_PROGRESS",
+                "name": "Request name",
+                "step": "Request step",
+                "description": "string",
+                "creation_date": "2022-04-25T09:39:29.765Z",
+                "start_date": "2022-04-25T09:39:29.765Z",
+                "completion_date": "2022-04-25T09:39:29.765Z",
+                "data": {}
+            },
+            {
+                "request_id": 5678,
+                "status_msg": "ACKNOWLEDGED",
+                "name": "Request name 2",
+                "step": "Request step 2",
+                "description": "string1",
+                "creation_date": "2022-04-26T09:39:29.765Z",
+                "start_date": "2022-04-26T09:39:29.765Z",
+                "completion_date": "2022-04-27T09:39:29.765Z",
+                "data": {}
+            },
+            {
+                "request_id": 2460,
+                "status_msg": "COMPLETED",
+                "name": "Request name 3",
+                "step": "Request step 3",
+                "description": "string2",
+                "creation_date": "2022-03-15T09:39:29.765Z",
+                "start_date": "2022-03-15T09:39:29.765Z",
+                "completion_date": "2022-03-18T09:39:29.765Z",
+                "data": {}
+            },
+            {
+                "request_id": 6398,
+                "status_msg": "HELD",
+                "name": "Request name 4",
+                "step": "Request step 5",
+                "description": "string3",
+                "creation_date": "2022-03-15T09:39:29.765Z",
+                "start_date": "2022-03-15T09:39:29.765Z",
+                "completion_date": "2022-03-18T09:39:29.765Z",
+                "data": {}
+            },
+            ]
+        }
+    }
 }
 </script>
 
@@ -57,11 +104,14 @@ thead th {
     padding: 6px;
 }
 
-tbody th {
+tr {
     text-align: left;
     border: solid 1px var(--light-alt);
-    color: var(--primary);
     padding: 6px;    
+}
+
+.th {
+    color: var(--primary);
 }
 
 td {
