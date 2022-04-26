@@ -31,8 +31,10 @@
 export default {
     data() {
         return {
+            form: {
             request_id: '',
             complete: false
+            }
         }
     },
     methods: {

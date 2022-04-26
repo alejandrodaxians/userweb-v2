@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     data() {
         return {
@@ -91,9 +92,10 @@ export default {
         }
     },
     mounted() {
-        fetch("http://localhost:3000/rows")
-            .then(res => res.json())
-            .then(data => this.rows = data)
+        axios.get("http://192.168.104.41:30448/request")
+            .then(res => { 
+                console.log(res)
+            })
             .catch(err => console.log(err.message))
     }
 }

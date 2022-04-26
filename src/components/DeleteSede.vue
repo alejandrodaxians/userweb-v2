@@ -34,20 +34,24 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     data() {
         return {
+            form: {
             vnf_id: '',
             vnfd_id: '',
             ucpe_id: '',
+            }
         }
     },
     methods: {
         handleSubmit() {
-            console.log('form submitted')
-            console.log('vnf_id: ', this.vnf_id)
-            console.log('vnfd_id: ', this.vnfd_id)
-            console.log('ucpe_id: ', this.ucpe_id)
+            axios.delete('http://192.168.104.41:30448/sede', this.form)
+            .then(res => {
+                console.log(res)
+            })
+            .catch(err => console.log(err.message))
         }
     }
 }

@@ -61,11 +61,13 @@
 export default {
     data() {
         return {
+            form: {
             complete: false,
             saga: '',
             status: '',
             from: '',
             to: ''
+            }
         }
     },
     methods: {

@@ -78,9 +78,11 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     data() {
         return {
+            form: {
             template_id: '',
             license_id: '',
             vnfd_name: '',
@@ -90,19 +92,16 @@ export default {
             json: [],
             tosca: [],
             params: []
+            }
         }
     },
     methods: {
         handleSubmit() {
-            console.log('form submitted')
-            console.log('license_id: ', this.license_id)
-            console.log('vnfd_name: ', this.vnfd_name)
-            console.log('vnfd_desc: ', this.vnfd_desc)
-            console.log('vnf_name: ', this.vnf_name)
-            console.log('vnf_desc: ', this.vnf_desc)
-            console.log('raw_json: ', this.json)
-            console.log('tosca_file: ', this.tosca)
-            console.log('params_file: ', this.params)
+            axios.post('http://192.168.104.41:30448/sede', this.form)
+            .then(res => {
+                console.log(res)
+            })
+            .catch(err => console.log(err.message))
         }
     }
 }
