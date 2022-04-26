@@ -4,8 +4,14 @@
             <thead>
                 <tr>
                     <th v-for="(col) in columns" :key="col" @click="sortTable(col)">{{ col }}
-                        <span class="material-icons" v-show="col == sortColumn" v-if="!this.ascending">arrow_drop_down</span>
-                        <span class="material-icons" v-show="col == sortColumn" v-else>arrow_drop_up</span>
+                        <span id="sort" 
+                        class="material-icons" 
+                        v-show="col == sortColumn" 
+                        v-if="!this.ascending">arrow_drop_down</span>
+                        <span id="sort" 
+                        class="material-icons" 
+                        v-show="col == sortColumn" 
+                        v-else>arrow_drop_up</span>
                     </th>
                 </tr>
             </thead>
@@ -15,7 +21,10 @@
                 </tr>
             </tbody>
         </table>
-    <input type="text" placeholder="Filter by ID" v-model="filter" />
+    <div>
+        <span class="material-icons" id="filter">sort</span>
+        <input type="text" placeholder="Filter by ..." v-model="filter" />
+    </div>
     </div>
 </template>
 
@@ -37,52 +46,7 @@ export default {
                 "completion_date",
                 "data"
             ],
-            rows: [
-            {
-                "request_id": 1234,
-                "status_msg": "IN_PROGRESS",
-                "name": "Request name",
-                "step": "Request step",
-                "description": "string",
-                "creation_date": "2022-04-25T09:39:29.765Z",
-                "start_date": "2022-04-25T09:39:29.765Z",
-                "completion_date": "2022-04-25T09:39:29.765Z",
-                "data": {}
-            },
-            {
-                "request_id": 5678,
-                "status_msg": "ACKNOWLEDGED",
-                "name": "Request name 2",
-                "step": "Request step 2",
-                "description": "string1",
-                "creation_date": "2022-04-26T09:39:29.765Z",
-                "start_date": "2022-04-26T09:39:29.765Z",
-                "completion_date": "2022-04-27T09:39:29.765Z",
-                "data": {}
-            },
-            {
-                "request_id": 2460,
-                "status_msg": "COMPLETED",
-                "name": "Request name 3",
-                "step": "Request step 3",
-                "description": "string2",
-                "creation_date": "2022-03-15T09:39:29.765Z",
-                "start_date": "2022-03-15T09:39:29.765Z",
-                "completion_date": "2022-03-18T09:39:29.765Z",
-                "data": {}
-            },
-            {
-                "request_id": 6398,
-                "status_msg": "HELD",
-                "name": "Request name 4",
-                "step": "Request step 5",
-                "description": "string3",
-                "creation_date": "2022-03-15T09:39:29.765Z",
-                "start_date": "2022-03-15T09:39:29.765Z",
-                "completion_date": "2022-03-18T09:39:29.765Z",
-                "data": {}
-            },
-            ]
+            rows: [],
         }  
     },
     methods: {
@@ -107,25 +71,31 @@ export default {
         }
     },
     computed: {
-    filteredRows() {
-        return this.rows.filter(row => {
-        const request_id = row.request_id.toString().toLowerCase();
-        const status_msg = row.status_msg.toLowerCase();
-        const name = row.name.toLowerCase();
-        const step = row.step.toLowerCase();
-        const description = row.description.toLowerCase();
-        const creation_date = row.creation_date.toLowerCase();
-        const start_date = row.start_date.toLowerCase();
-        const completion_date = row.completion_date.toLowerCase();
-        const searchTerm = this.filter.toLowerCase();
-        
+        filteredRows() {
+            return this.rows.filter(row => {
+            const request_id = row.request_id.toString().toLowerCase();
+            const status_msg = row.status_msg.toLowerCase();
+            const name = row.name.toLowerCase();
+            const step = row.step.toLowerCase();
+            const description = row.description.toLowerCase();
+            const creation_date = row.creation_date.toLowerCase();
+            const start_date = row.start_date.toLowerCase();
+            const completion_date = row.completion_date.toLowerCase();
+            const searchTerm = this.filter.toLowerCase();
+            
 
-        return status_msg.includes(searchTerm) || request_id.includes(searchTerm) || 
-            name.includes(searchTerm) || step.includes(searchTerm) || description.includes(searchTerm) || 
-            creation_date.includes(searchTerm) || start_date.includes(searchTerm) || completion_date.includes(searchTerm)
-        });
-  }
-},
+            return status_msg.includes(searchTerm) || request_id.includes(searchTerm) || 
+                name.includes(searchTerm) || step.includes(searchTerm) || description.includes(searchTerm) || 
+                creation_date.includes(searchTerm) || start_date.includes(searchTerm) || completion_date.includes(searchTerm)
+            });
+        }
+    },
+    mounted() {
+        fetch("http://localhost:3000/rows")
+            .then(res => res.json())
+            .then(data => this.rows = data)
+            .catch(err => console.log(err.message))
+    }
 }
 
 </script>
@@ -194,13 +164,21 @@ input {
         margin-top: 30px;
     }
 
-span {
+#sort {
     float: left;
     width: 12px;
     height: 15px;
     background-repeat: no-repeat;
     background-size: contain;
     background-position-y: bottom;
+}
+
+#filter {
+    float: left;
+    width: 12px;
+    height: 15px;
+    margin-right: 30px;
+    padding-left: 15px;
 }
 
 .number {
