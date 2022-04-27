@@ -16,7 +16,9 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="row in filteredRows.slice(0, 10)" :key="row">
+                <!-- Next line allows limiting the results in table to 10 -->
+                <!-- <tr v-for="row in filteredRows.slice(0, 10)" :key="row"> -->
+                <tr v-for="row in filteredRows" :key="row">
                    <td v-for="col in columns" :key="col">{{ row[col] }}</td>
                 </tr>
             </tbody>
@@ -33,7 +35,19 @@ import axios from 'axios'
 export default {
     data() {
         return {
+            ascending: '',
+            sortColumn: '',
             filter: '',
+            detail500: "Error 500: SQL database error: Can't reconnect until invalid transaction is rolled back. (Background on this error at: https://sqlalche.me/e/14/8s2b)",
+            detail422: [
+                {
+                    "loc": [
+                    "locationOfError"
+                    ],
+                    "msg": "The server was unable to prcoess the conained insructions. The cliente should not repeat this request withpout modification.",
+                    "type": "422"
+                }
+            ],
             currentPage: 1,
             elementsPerPage: 1,
             columns: [
@@ -80,8 +94,8 @@ export default {
             const step = row.step.toLowerCase();
             const description = row.description.toLowerCase();
             const creation_date = row.creation_date.toLowerCase();
-            const start_date = row.start_date.toLowerCase();
-            const completion_date = row.completion_date.toLowerCase();
+            const start_date = row.start_date;
+            const completion_date = row.completion_date;
             const searchTerm = this.filter.toLowerCase();
             
 
@@ -93,8 +107,15 @@ export default {
     },
     mounted() {
         axios.get("http://192.168.104.41:30448/request")
-            .then(res => { 
-                console.log(res)
+            // TEST ERR res.status = 500
+            .then(res => {
+                if (res.status == 500) {
+                    console.log(this.detail500)                    
+                } else if (res.status == 422) {
+                    console.log(this.detail422)
+                } else {
+                this.rows = res.data
+                console.log(res) }
             })
             .catch(err => console.log(err.message))
     }
@@ -211,7 +232,7 @@ input {
         width: 20px;
     }
 
-    table th:nth-child(4), table td:nth-child(4) {
+    table th:nth-child(5), table td:nth-child(5) {
         display: none;
     }
 
