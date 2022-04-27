@@ -38,16 +38,19 @@ import axios from 'axios'
 export default {
     data() {
         return {
-            form: {
             vnf_id: '',
             vnfd_id: '',
-            ucpe_id: '',
-            }
+            ucpe_id: ''
         }
     },
     methods: {
         handleSubmit() {
-            axios.delete('http://192.168.104.41:30448/sede', this.form)
+            let formData = {
+                vnf_id: this.vnf_id,
+                cnfd_id: this.vnfd_id,
+                ucpe_id: this.ucpe_id
+            }
+            axios.delete('http://192.168.104.41:30448/sede/', formData)
             .then(res => {
                 console.log(res)
             })

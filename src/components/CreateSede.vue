@@ -82,7 +82,6 @@ import axios from 'axios'
 export default {
     data() {
         return {
-            form: {
             template_id: '',
             license_id: '',
             vnfd_name: '',
@@ -92,12 +91,19 @@ export default {
             json: [],
             tosca: [],
             params: []
-            }
         }
     },
     methods: {
         handleSubmit() {
-            axios.post('http://192.168.104.41:30448/sede', this.form)
+            let formData = {
+                template_id: this.template_id,
+                license_pack_id: this.license_id,
+                vnfd_name: this.vnfd_name,
+                vnfd_desc: this.vnfd_desc,
+                vnf_name: this.vnf_name,
+                vnf_desc: this.vnf_desc
+            }
+            axios.post('http://192.168.104.41:30448/sede/', formData)
             .then(res => {
                 console.log(res)
             })
