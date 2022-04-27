@@ -28,20 +28,26 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
     data() {
         return {
-            form: {
             request_id: '',
             complete: false
-            }
         }
     },
     methods: {
         handleSubmit() {
-            console.log('form submitted')
-            console.log('request_id: ', this.request_id)
-            console.log('complete: ', this.complete)
+            axios.get("http://192.168.104.41:30448/request/" + this.request_id,  {
+                 params: {
+                     complete: this.complete
+                 }
+             })
+            .then(res => {
+                console.log(res)
+            })
+            .catch(err => console.log(err.message))
         }
     }
 }
