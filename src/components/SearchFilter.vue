@@ -10,36 +10,34 @@
     <div class="wrapper">
         <div class="left">
             <label for="">status:</label>
-            <select name="" id="" v-model="status">
-                <option value="" hidden></option>
-                <option value="acknowledged">ACKNOWLEDGED</option>
-                <option value="progress">IN-PROGRESS</option>
-                <option value="pending">PENDING</option>
-                <option value="held">HELD</option>
-                <option value="cancelled">CANCELLED</option>
-                <option value="completed">COMPLETED</option>
-                <option value="failed">FAILED</option>
-                <option value="partial">PARTIAL</option>
-                <option value="rejected">REJECTED</option>
+            <select name="" id="" v-model="state">
+                <option value="ACKNOWLEDGED">ACKNOWLEDGED</option>
+                <option value="IN_PROGRESS">IN_PROGRESS</option>
+                <option value="PENDING">PENDING</option>
+                <option value="HELD">HELD</option>
+                <option value="CANCELLED">CANCELLED</option>
+                <option value="COMPLETED">COMPLETED</option>
+                <option value="FAILED">FAILED</option>
+                <option value="PARTIAL">PARTIAL</option>
+                <option value="REJECTED">REJECTED</option>
             </select>
             <p class="info">string</p>
             
             <label for="">saga_name:</label>
-            <select name="" id="" v-model="saga">
-                <option value="" hidden></option>
-                <option value="crear">CREAR_SEDE</option>
-                <option value="borrar">BORRAR_SEDE</option>
+            <select name="" id="" v-model="name">
+                <option value="crear_sede">crear_sede</option>
+                <option value="borrar_sede">borrar_sede</option>
             </select>
             <p class="info">string</p> 
         </div>
 
         <div class="right">
             <label for="">from_date:</label>
-            <input type="date" name="" id="" v-model="from">
+            <input type="text" name="" id="" v-model="from">
             <p class="info">string($date), YYYY-MM-DD</p>>
 
             <label for="">to_date:</label>
-            <input type="date" name="" id="" v-model="to">
+            <input type="text" name="" id="" v-model="to">
             <p class="info">string($date), YYYY-MM-DD</p>
         </div>
     </div>
@@ -58,26 +56,34 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
     data() {
         return {
-            form: {
             complete: false,
-            saga: '',
-            status: '',
-            from: '',
-            to: ''
-            }
+            name: null,
+            state: null,
+            from: null,
+            to: null
         }
     },
+    
     methods: {
         handleSubmit() {
-            console.log('form submitted')
-            console.log('complete: ', this.complete)
-            console.log('saga: ', this.saga)
-            console.log('status: ', this.status)
-            console.log('from: ', this.from)
-            console.log('to: ', this.to)
+             axios.get("http://192.168.104.41:30448/request", {
+                 params: {
+                     complete: this.complete,
+                     state: this.state,
+                     saga_name: this.name,
+                     from_date: this.from,
+                     to_date: this.to
+                 }
+             })
+            .then(res => {
+                console.log(res)
+            })
+            .catch(err => console.log(err.message))
         }
     }
 }
